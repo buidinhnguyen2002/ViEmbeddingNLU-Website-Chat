@@ -1,0 +1,10 @@
+.drawbar--padding {
+  padding: 1.5rem;
+}
+.drawbar--padding .chat__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/*# sourceMappingURL=ChatSideBar.css.map */

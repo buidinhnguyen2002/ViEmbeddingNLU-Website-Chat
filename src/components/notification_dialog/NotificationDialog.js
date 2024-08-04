@@ -1,0 +1,20 @@
+import "./Notification.scss"
+import InputModal from "../input_modal/InputModal";
+import TextAreaModal from "../textarea_modal/TextAreaModal";
+import TextButtonIcon from "../icon_text_button/TextButtonIcon";
+export default function NotificationDialog({title, mesage,cancelDialog, confirm}) {
+    return (
+        <div className="overlay">
+            <div className="dialog">
+                <span className="dialog_title">{title}</span>
+                <div className="dialog_body">
+                    <p className="dialog_message">{mesage}</p>
+                </div>
+                <div className="dialog_footer">
+                    <TextButtonIcon onPress={cancelDialog} title={"Cancel"} background={"#EFEFEF"} color={"black"}/>
+                    <TextButtonIcon title={"Confirm"} background={"red"}/>
+                </div>
+            </div>
+        </div>
+    )
+}

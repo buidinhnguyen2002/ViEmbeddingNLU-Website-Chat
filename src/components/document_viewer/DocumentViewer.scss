@@ -1,0 +1,93 @@
+@import "../../styles/abstracts/variables";
+@import "../../styles/abstracts/mixins";
+.document_viewer{
+  padding: 1rem 1.5rem;
+  gap: 2rem;
+  margin-right: 2rem;
+  &__header{
+    .document_relate__container{
+      display: flex;
+      flex-direction: column;
+      .document_relate{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        &__image{
+          @include dimension(6rem, 6rem);
+          border-radius: 0.8rem;
+          img{
+            @include dimension(100%, 100%);
+          }
+        }
+        &__info{
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          .title{
+            @include textStyle(1.8rem, 600, 1.2, $color-black);
+          }
+          .sub_content{
+            @include textStyle(1.4rem, 400, 1.2, $color_text-grey);
+          }
+        }
+      }
+      .document_tag{
+        display: flex;
+        gap: 0.5rem;
+        .text_tag{
+          padding: 0.1rem 0.5rem;
+          background-color: $color-grey;
+          border-radius: 0.8rem;
+          &>span{
+            @include textStyle(1.2rem, 600, 1.2, $color-text-grey);
+          }
+        }
+      }
+    }
+  }
+  &__body{
+    border: 1px solid $color-main-blue;
+    overflow: auto;
+    flex: 1;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & {
+      scrollbar-width: none;
+    }
+    border-radius: 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    .header_tag{
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      background-color: $color-main-blue;
+      padding: 0.5rem 0.7rem;
+      width: max-content;
+      border-radius: 1rem;
+      img{
+        @include dimension(3rem, 3rem);
+        object-fit: fill;
+      }
+      &>span{
+        @include textStyle(1.6rem, 500, 1.2, $color-white);
+      }
+    }
+    .context_used__container{
+      margin-top: 1rem;
+      flex: 1;
+      overflow: auto;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      & {
+        scrollbar-width: none;
+      }
+      .context{
+        @include textStyle(1.6rem, 400, 1.5, $color-black);
+      }
+    }
+  }
+}

@@ -1,0 +1,147 @@
+@import "../../styles/abstracts/mixins";
+@import "../../styles/abstracts/variables";
+.chat_area{
+  width: calc(50% - 4rem/2);
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 4rem);
+  margin: 2rem 0;
+  border-radius: 0.8rem;
+  background-color: $color-white;
+  position: relative;
+  &__title{
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid $color-grey;
+    display: flex;
+    justify-content: space-between;
+    .side_bar_ic{
+      @include dimension(3rem,3rem);
+      padding: 0.2rem 0.8rem;
+      border-radius: 0.5rem;
+      @include flexMiddle();
+      cursor: pointer;
+      &:hover{
+        background-color: $color-grey;
+      }
+    }
+    span {
+      @include textStyle(1.8rem, 600, 1.2, $color-black);
+    }
+  }
+  &__message{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    padding-bottom: 5rem;
+    position: relative;
+    &::-webkit-scrollbar{
+      display: none;
+    }
+  }
+  .side_bar__container{
+    //padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 0%;
+    //height: calc(100% - 5.1rem);
+    height: calc(100% - 5rem - 9rem);
+    @include positionAbsolute(5.1rem, 0, unset, unset);
+    background-color: $color-white;
+    border: 1px solid $color-grey;
+    //z-index: 11;
+    border-radius: 0.5rem;
+    transition: 0.2s ease-out all;
+    overflow-x: hidden;
+    &--show{
+      width: 60%;
+    }
+    .side_bar_item__container{
+      margin: 2rem;
+      max-height: calc(100% - 5rem);
+      cursor: pointer;
+      .side_bar_item__header{
+        display: flex;
+        justify-content: space-between;
+        .ic_add{
+          padding: 0rem 0.5rem;
+          border-radius: 0.5rem;
+          font-size: 2rem;
+          &:hover{
+            background-color: $color-grey;
+          }
+        }
+      }
+      .side_bar_item__title{
+        @include textStyle(1.8rem, 600, 1.5, $color-text-grey);
+      }
+      .input_prompt{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-top: 1rem;
+        textarea{
+          border-radius: 1.5rem;
+          line-height: 1.2;
+          max-height: 15rem;
+          overflow-y: auto;
+          resize: none;
+          border: unset;
+          //margin: 2rem;
+          padding: 1rem 1.5rem;
+          background-color: $color-background-modal;
+          outline: none;
+          font-size: 1.8rem;
+        }
+      }
+      .knowledge__container{
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        flex: 1;
+        overflow: auto;
+        .knowledge_item{
+          display: flex;
+          gap: 2rem;
+          padding: 1rem;
+          border-radius: 0.8rem;
+          transition: 0.25s all linear;
+          &:hover{
+            background-color: $color-grey;
+          }
+          .knowledge_img{
+            @include dimension(4.8rem, 4.8rem);
+            border-radius: 0.8rem;
+            overflow: hidden;
+            img{
+              @include dimension(100%,100%);
+              object-fit: cover;
+            }
+          }
+          .knowledge__content{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            justify-content: center;
+            .knowledge_title{
+              @include textStyle(1.6rem, 600, 1.2, $color-black);
+            }
+            .knowledge_description{
+              @include textStyle(1.4rem, 400, 1.2, $color-text-grey);
+            }
+          }
+        }
+      }
+      &--max{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        //visibility: visible;
+      }
+    }
+
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../styles/abstracts/variables";
+.chat {
+  display: flex;
+  min-height: 100vh;
+  background-color: $color-main-background;
+  .safe_area{
+    //padding: 3rem 3.5rem;
+    width: 80%;
+    max-height: 100vh;
+  }
+}
