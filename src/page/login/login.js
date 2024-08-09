@@ -10,10 +10,14 @@ import imgPolygon2 from '../../assets/images/Polygon 2.png';
 import imgPolygon3 from '../../assets/images/Polygon 3.png';
 import imgSubtract from '../../assets/images/Subtract.png';
 // import {callAPILogin, callAPIRegister, client, reConnectionServer} from '../../service/loginService';
-// import {loginSuccess} from "../../store/actions/userAction";
+// import {loginSuccess} from "../../store.js/actions/userAction";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import CryptoJS from 'crypto-js';
+import {login, signup} from "../../services/UserService";
+import {Routers} from "../../utils/Constants";
+import {loginSuccess} from "../../store/actions/UserAction";
+import {encryptToken} from "../../utils/Functions";
 // import {decryptData, encryptData} from "../../util/function";
 
 function Login() {
@@ -26,7 +30,7 @@ function Login() {
     const [error, setError] = useState('');
     const [registerSuccess, setRegisterSuccess] = useState(false);
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -58,39 +62,30 @@ function Login() {
         }
     }
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (userName === '' || password === '') {
             setError('Vui lòng nhập tài khoản và mật khẩu');
             return;
         }
-        navigate('/');
-        // callAPILogin(userName, password);
-        // client.onmessage = (message) => {
-        //     const dataFromServer = JSON.parse(message.data);
-        //     console.log(dataFromServer);
-        //     if (dataFromServer['event'] === 'LOGIN') {
-        //         if (dataFromServer['data'] && dataFromServer['data']['RE_LOGIN_CODE']) {
-        //             const dataReLogIn = {
-        //                 userName: userName,
-        //                 keyReLogIn: dataFromServer['data']['RE_LOGIN_CODE'],
-        //                 isLogin: true,
-        //             };
-        //             // const encryptedData = encryptData(dataReLogIn);
-        //             // sessionStorage.setItem('dataReLogIn', encryptedData);
-        //             // dispatch(loginSuccess(userName));
-        //             return navigate('/chat');
-        //         } else {
-        //             setError('Tài khoản hoặc mật khẩu không chính xác');
-        //         }
-        //     }
-        // };
-        //
-        // client.onerror = () => {
-        //     setError('Đã xảy ra lỗi khi kết nối đến máy chủ. Vui lòng thử lại sau.');
-        // };
+        await login(userName, password).then(data  =>{
+            if(data.status == 403){
+                navigate(Routers.VerifyAccount, { state: { email: userName}});
+            }else{
+                const encryptedAccessToken = encryptToken(data.access_token);
+                const encryptedRefreshToken = encryptToken(data.refresh_token);
+                localStorage.setItem('access_token', encryptedAccessToken);
+                localStorage.setItem('refresh_token', encryptedRefreshToken);
+                navigate(Routers.Home, { state: { email: userName}});
+
+            }
+        }).catch(error => {
+            console.log(error.message);
+            setError(error.message);
+            return;
+        });
     };
 
-    const handleRegister = () => {
+    const handleRegister = async () => {
         if (userName === '' || password === '' || retypePassword === '') {
             setError('Vui lòng nhập thông tin');
             return;
@@ -99,24 +94,12 @@ function Login() {
             setError('Mật khẩu và mật khẩu nhập lại không trùng nhau');
             return;
         }
-
-        // callAPIRegister(userName, password);
-        // client.onmessage = (message) => {
-        //     const dataFromServer = JSON.parse(message.data);
-        //     console.log(dataFromServer);
-        //     if (dataFromServer['event'] === 'REGISTER') {
-        //         if (dataFromServer['status'] === 'success') {
-        //             setRegisterSuccess(true);
-        //
-        //             setTimeout(() => {
-        //                 setRegisterSuccess(false);
-        //                 setStatus('login');
-        //             }, 1000);
-        //         } else {
-        //             setError('Tên đăng nhập đã tồn tại. Vui lòng nhập tên khác!');
-        //         }
-        //     }
-        // };
+        await signup(password, userName).then(data  =>{
+            navigate(Routers.VerifyAccount, { state: { email: userName}});
+        }).catch(error => {
+            setError(error.message);
+            return;
+        });
     };
 
     const toggleShowPassword = (event) => {

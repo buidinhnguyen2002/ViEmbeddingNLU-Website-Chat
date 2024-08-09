@@ -11,47 +11,19 @@ import Files from "./components/files/Files";
 import FileDetail from "./components/file_detail/FileDetail";
 import ChatPage from "./page/chat/ChatPage";
 import Login from "./page/login/login";
+import {Provider, useDispatch} from "react-redux";
+import store from "./store/store";
+import VerifyAccount from "./page/verify_account/VerifyAccount";
+import {Routers} from "./utils/Constants";
+import {infoUserLoader} from "./services/Loaders";
+import HomePage from "./page/home/HomePage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const router = createBrowserRouter(
-    [
-        {
-            path: "/login",
-            element: <Login/>,
-        },
-      {
-        path: "/",
-        element: <App/>,
-          // element: <Login />,
-          children: [
-              {
-                  path: "/bots",
-                  element: <Bot/>,
-              },
-              {
-                  path: "knowledge",
-                  element: <Knowledge/>,
-              },
-              {
-                  path: "/knowledge/knowledgeId",
-                  element: <Files/>,
-              },
-              {
-                  path: "/knowledge/knowledgeId/fileId",
-                  element: <FileDetail/>,
-              },
-          ],
-      },
-        {
-            path: "/bots/botId",
-            element: <ChatPage/>,
-        },
-    ]
-);
-
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+      <Provider store={store}>
+          <App/>
+      </Provider>
   </React.StrictMode>
 );
 

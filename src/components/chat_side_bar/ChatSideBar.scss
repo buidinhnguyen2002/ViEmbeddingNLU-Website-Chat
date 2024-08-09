@@ -1,8 +1,31 @@
+@import "../../styles/abstracts/variables";
 .drawbar--padding{
   padding: 1.5rem;
   .chat__wrapper{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    .new_chat{
+      display: flex;
+      gap: 0.5rem;
+      &__input{
+        width: 100%;
+        border: 1px solid $color-grey;
+        border-radius: 0.8rem;
+        padding: 0 0.5rem;
+        &:focus{
+          outline: 1px solid $color-main-blue;
+        }
+      }
+      .btn_create_chat{
+        padding: 1rem;
+        border-radius: 0.8rem;
+        background-color:  $color-main-blue;
+        cursor: pointer;
+        span{
+          color: $color-white;
+        }
+      }
+    }
   }
 }

@@ -39,7 +39,7 @@ export default function UploadFileModal({toggleShow, confirm}) {
                 </form>
                 <div className="new_bot__modal-footer">
                     <TextButtonIcon title={"Cancel"} onPress={toggleShow} background={"#FFFFFF"} color={"#1C1C1C"}/>
-                    <TextButtonIcon title={"Confirm"} onPress={()=>confirm()}/>
+                    <TextButtonIcon title={"Confirm"} onPress={()=>confirm(files)}/>
                 </div>
             </div>
         </div>

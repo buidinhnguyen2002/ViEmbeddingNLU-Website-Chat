@@ -5,9 +5,9 @@ import {useEffect, useRef, useState} from "react";
 import "./KnowledgeModal.scss"
 import FileItem from "../file_item/FileItem";
 
-export default function KnowledgeModal({titleForm,toggleShow, confirm, title, description}) {
-    const [knowledgeName, setKnowledgeName] = useState("");
-    const [descriptionKnowledge, setDescriptionKnowledge] = useState("");
+export default function KnowledgeModal({knowledgeId,titleForm,toggleShow, confirm, title, description}) {
+    const [knowledgeName, setKnowledgeName] = useState(title);
+    const [descriptionKnowledge, setDescriptionKnowledge] = useState(description);
     const fileInputRef = useRef(null);
     const [files, setFiles] = useState([]);
     const [formTitle, setFormTitle] = useState("Create knowledge");
@@ -62,7 +62,7 @@ export default function KnowledgeModal({titleForm,toggleShow, confirm, title, de
                 </form>
                 <div className="new_bot__modal-footer">
                     <TextButtonIcon title={"Cancel"} onPress={toggleShow} background={"#FFFFFF"} color={"#1C1C1C"}/>
-                    <TextButtonIcon title={"Confirm"} onPress={()=>confirm(knowledgeName, descriptionKnowledge)}/>
+                    <TextButtonIcon title={"Confirm"} onPress={()=>confirm(knowledgeName, descriptionKnowledge, knowledgeId)}/>
                 </div>
             </div>
         </div>
