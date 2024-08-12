@@ -1,54 +1,62 @@
 import "./FileDetail.scss"
 import word from "../../assets/images/word.png"
 import Chip from "../chip/Chip";
+import {useEffect, useState} from "react";
+import {getDetailFilesKnowledge, getKnowledges} from "../../services/KnowledgeService";
+import {saveKnowledges} from "../../store/actions/KnowledgeAction";
+import {decryptToken} from "../../utils/Functions";
+import {useDispatch} from "react-redux";
+import {useParams} from "react-router-dom";
+import Loading from "../loading/Loading";
 export default function FileDetail() {
+    const { knowledgeId, fileId } = useParams();
+    const accessToken = decryptToken(localStorage.getItem('access_token'));
+    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(true);
+    const [fileDetail, setFileDetail] = useState(null);
+    useEffect(() => {
+        fetchData();
+    }, [accessToken]);
+    const fetchData = async () => {
+        try {
+            const data = await getDetailFilesKnowledge(accessToken, knowledgeId, fileId);
+            setFileDetail(data);
+            // dispatch(saveKnowledges(data.knowledges));
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error fetching knowledges:', error.message);
+        }
+    };
     return (
-        <div className={"file_detail"}>
-            <div className="file_detail__header">
-                <div className="file_detail__url">
-                    <span className={"root_url"}>Knowledge / document / <span className={"target_url"}>document.docs</span></span>
-                </div>
-                <div className="file_detail__infomation">
-                    <div className="file_image"><img src={word} alt=""/></div>
-                    <div className="file_info">
-                        <div className="file__title">
+        <>
+            {isLoading ? <Loading/> : <div className={"file_detail"}>
+                <div className="file_detail__header">
+                    <div className="file_detail__url">
+                        <span className={"root_url"}>Knowledge / document / <span className={"target_url"}>{fileDetail.file.name }</span></span>
+                    </div>
+                    <div className="file_detail__infomation">
+                        <div className="file_image"><img src={word} alt=""/></div>
+                        <div className="file_info">
+                            <div className="file__title">
                             <span className={"file__title--style"}>
-                                document.docs
+                                {fileDetail.file.name}
                             </span>
-                        </div>
-                        <div className="file__tag">
-                            <Chip text={"69 segments"}/>
-                            <Chip text={"2.5 MB"}/>
-                            <Chip text={"5000 token"}/>
+                            </div>
+                            <div className="file__tag">
+                                <Chip text={`${fileDetail.file.chunk_count} chunks`}/>
+                                <Chip text={`${fileDetail.file.size} MB`}/>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="file_detail__body">
-                <div className="file__content">
-                    Đoạn văn là một khái niệm quan trọng trong viết văn, tạo nên sự tổ chức và sắp xếp logic cho nội dung. Nó không chỉ mang trong mình một nội dung nhất định mà còn phản ánh sự phân đoạn hình thức của văn bản.
-
-                        Mỗi đoạn văn thường bắt đầu bằng một câu chủ đề hoặc một ý chính, từ đó phát triển và mở rộng ý kiến, thông tin hoặc quan điểm của tác giả. Các câu trong đoạn văn liên kết với nhau thông qua những từ nối, ví dụ như "thêm vào đó", "tuy nhiên", "do đó", để tạo sự mạch lạc và logic cho nội dung.
-
-                        Hình thức của một đoạn văn cũng rất quan trọng. Thông thường, đoạn văn được phân đoạn bằng chỗ lùi đầu dòng, để làm nổi bật sự tổ chức và cấu trúc của văn bản. Đôi khi, tác giả cũng sử dụng việc viết hoa chữ cái đầu tiên của câu đầu đoạn để tăng tính nhận biết và trình bày. Đồng thời, đoạn văn thường kết thúc bằng dấu chấm ngắt đoạn, để làm rõ sự kết thúc của một ý kiến hoặc một tư duy.Đoạn văn là một khái niệm quan trọng trong viết văn, tạo nên sự tổ chức và sắp xếp logic cho nội dung. Nó không chỉ mang trong mình một nội dung nhất định mà còn phản ánh sự phân đoạn hình thức của văn bản.
-
-                        Mỗi đoạn văn thường bắt đầu bằng một câu chủ đề hoặc một ý chính, từ đó phát triển và mở rộng ý kiến, thông tin hoặc quan điểm của tác giả. Các câu trong đoạn văn liên kết với nhau thông qua những từ nối, ví dụ như "thêm vào đó", "tuy nhiên", "do đó", để tạo sự mạch lạc và logic cho nội dung.
-
-                        Hình thức của một đoạn văn cũng rất quan trọng. Thông thường, đoạn văn được phân đoạn bằng chỗ lùi đầu dòng, để làm nổi bật sự tổ chức và cấu trúc của văn bản. Đôi khi, tác giả cũng sử dụng việc viết hoa chữ cái đầu tiên của câu đầu đoạn để tăng tính nhận biết và trình bày. Đồng thời, đoạn văn thường kết thúc bằng dấu chấm ngắt đoạn, để làm rõ sự kết thúc của một ý kiến hoặc một tư duy.Đoạn văn là một khái niệm quan trọng trong viết văn, tạo nên sự tổ chức và sắp xếp logic cho nội dung. Nó không chỉ mang trong mình một nội dung nhất định mà còn phản ánh sự phân đoạn hình thức của văn bản.
-
-                        Mỗi đoạn văn thường bắt đầu bằng một câu chủ đề hoặc một ý chính, từ đó phát triển và mở rộng ý kiến, thông tin hoặc quan điểm của tác giả. Các câu trong đoạn văn liên kết với nhau thông qua những từ nối, ví dụ như "thêm vào đó", "tuy nhiên", "do đó", để tạo sự mạch lạc và logic cho nội dung.
-
-                        Hình thức của một đoạn văn cũng rất quan trọng. Thông thường, đoạn văn được phân đoạn bằng chỗ lùi đầu dòng, để làm nổi bật sự tổ chức và cấu trúc của văn bản. Đôi khi, tác giả cũng sử dụng việc viết hoa chữ cái đầu tiên của câu đầu đoạn để tăng tính nhận biết và trình bày. Đồng thời, đoạn văn thường kết thúc bằng dấu chấm ngắt đoạn, để làm rõ sự kết thúc của một ý kiến hoặc một tư duy.Đoạn văn là một khái niệm quan trọng trong viết văn, tạo nên sự tổ chức và sắp xếp logic cho nội dung. Nó không chỉ mang trong mình một nội dung nhất định mà còn phản ánh sự phân đoạn hình thức của văn bản.
-
-                        Mỗi đoạn văn thường bắt đầu bằng một câu chủ đề hoặc một ý chính, từ đó phát triển và mở rộng ý kiến, thông tin hoặc quan điểm của tác giả. Các câu trong đoạn văn liên kết với nhau thông qua những từ nối, ví dụ như "thêm vào đó", "tuy nhiên", "do đó", để tạo sự mạch lạc và logic cho nội dung.
-
-                        Hình thức của một đoạn văn cũng rất quan trọng. Thông thường, đoạn văn được phân đoạn bằng chỗ lùi đầu dòng, để làm nổi bật sự tổ chức và cấu trúc của văn bản. Đôi khi, tác giả cũng sử dụng việc viết hoa chữ cái đầu tiên của câu đầu đoạn để tăng tính nhận biết và trình bày. Đồng thời, đoạn văn thường kết thúc bằng dấu chấm ngắt đoạn, để làm rõ sự kết thúc của một ý kiến hoặc một tư duy.Đoạn văn là một khái niệm quan trọng trong viết văn, tạo nên sự tổ chức và sắp xếp logic cho nội dung. Nó không chỉ mang trong mình một nội dung nhất định mà còn phản ánh sự phân đoạn hình thức của văn bản.
-
-                        Mỗi đoạn văn thường bắt đầu bằng một câu chủ đề hoặc một ý chính, từ đó phát triển và mở rộng ý kiến, thông tin hoặc quan điểm của tác giả. Các câu trong đoạn văn liên kết với nhau thông qua những từ nối, ví dụ như "thêm vào đó", "tuy nhiên", "do đó", để tạo sự mạch lạc và logic cho nội dung.
-
-                        Hình thức của một đoạn văn cũng rất quan trọng. Thông thường, đoạn văn được phân đoạn bằng chỗ lùi đầu dòng, để làm nổi bật sự tổ chức và cấu trúc của văn bản. Đôi khi, tác giả cũng sử dụng việc viết hoa chữ cái đầu tiên của câu đầu đoạn để tăng tính nhận biết và trình bày. Đồng thời, đoạn văn thường kết thúc bằng dấu chấm ngắt đoạn, để làm rõ sự kết thúc của một ý kiến hoặc một tư duy.
+                <div className="file_detail__body">
+                    <div className="file__content">
+                        {fileDetail.chunks.map((chunk)=>{
+                            return  <p className="chunk">{chunk.chunks}</p>
+                        })}
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>}
+        </>
     )
 }

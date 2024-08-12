@@ -7,6 +7,7 @@ const initialState = {
     email: "",
     firstName: "",
     lastName: "",
+    birtDate: "",
     role: "",
     gender: "",
     avatar: "",
@@ -41,6 +42,7 @@ export default function userReducer(state = initialState, action) {
                 role: action.payload.role,
                 gender: action.payload.gender,
                 avatar: action.payload.avatar,
+                birtDate: action.payload.birtDate,
             }
         // case 'SAVE_LIST_CHATS':
         //     return {

@@ -19,6 +19,7 @@ export function saveUserInfo(data) {
             "role": data.role,
             "gender": data.gender,
             "avatar": data.avatar,
+            "birtDate": data.birth_date,
         },
     };
 }

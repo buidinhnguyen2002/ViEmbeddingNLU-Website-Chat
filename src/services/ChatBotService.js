@@ -2,6 +2,7 @@ import {ApiConstants} from "../utils/Constants";
 import {json} from "react-router-dom";
 
 export const getChatsBot = async (accessToken, botId) => {
+    console.log("ACCESS TOKEN", accessToken)
     try {
         const res = await fetch(`${ApiConstants.chatsBot}/${botId}/chats`, {
             method: "GET",
@@ -103,4 +104,92 @@ export const deleteChatBot = async (authToken, botId, chatId) => {
         throw error;
     }
 }
+// queries
+export const createQueryBot = async (botId, chatId,message, authToken) => {
+    console.log("Parameter",botId, chatId, message, authToken);
+    try {
+        const res = await fetch(`${ApiConstants.chatQueries}/${botId}/chats/${chatId}/query`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${authToken}`,
+            },
+            body: JSON.stringify({
+                "query": message,
+            })
+        });
+        const data = await res.json();
+        console.log("QUERY DATA",data);
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        throw error;
+    }
+}
+// knowledges
+export const getKnowledgeInBot = async (accessToken, botId) => {
+    try {
+        const res = await fetch(`${ApiConstants.knowledgeBot}/${botId}/knowledges`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+            },
+        });
+        const data = await res.json();
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        throw error;
+    }
+}
+export const addKnowledgeToBot = async (botId, knowledgeId, authToken) => {
+    try {
+        const res = await fetch(`${ApiConstants.knowledgeBot}/${botId}/knowledges`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${authToken}`,
+            },
+            body: JSON.stringify({
+                "knowledge_id": knowledgeId,
+            })
+        });
+        const data = await res.json();
+        console.log("Knowledge DATA",data);
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        throw error;
+    }
+}
+export const deleteKnowledgeToBot = async (botId, knowledgeId, authToken) => {
+    try {
+        const res = await fetch(`${ApiConstants.knowledgeBot}/${botId}/knowledges/${knowledgeId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${authToken}`,
+            },
+        });
+        const data = await res.json();
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        throw error;
+    }
+}
+
 

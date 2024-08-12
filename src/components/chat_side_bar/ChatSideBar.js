@@ -32,8 +32,11 @@ export default function ChatSideBar({botId}) {
                     <div onClick={handleCreateNewChat} className="btn_create_chat"><span>Create</span></div>
                 </div>
                 {chats.map((chatBot, i)=>{
-                    return <ChatSideBarItem title={chatBot.title} botId={botId} chatId={chatBot.chat_id} index={i} selectedIndex={index} handleSelected={setIndex}/>
+                    return <ChatSideBarItem key={chatBot.chat_id} title={chatBot.title} botId={botId} chatId={chatBot.chat_id} index={i} selectedIndex={index} handleSelected={setIndex}/>
                 })}
+            </div>
+            <div className="btn_return_home">
+                <span></span>
             </div>
         </div>
     )

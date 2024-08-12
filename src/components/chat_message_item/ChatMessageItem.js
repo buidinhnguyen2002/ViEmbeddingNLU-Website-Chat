@@ -2,11 +2,17 @@ import "./ChatMessageItem.scss"
 import avatarBot from "../../assets/images/bot.png";
 import IconButton from "../icon_button/icon_button";
 import {ReactComponent as CopyIcon} from "../../assets/svg/copy.svg";
-export default function ChatMessageItem({message, mySelf}) {
+export default function ChatMessageItem({message, mySelf, isProcess, ref}) {
     return (
-        <div className={`chat_message__wrapper ${mySelf ? "chat_message__wrapper--self":""}`}>
+        <div ref={ref} className={`chat_message__wrapper ${mySelf ? "chat_message__wrapper--self":""}`}>
             {!mySelf && <div className="avatar_bot"><img src={avatarBot} alt=""/></div>}
-            <div className="chat_message__item">
+            {message =='' && !mySelf ? <div className={`chat_message__process`}>
+                <div className="loading_message">
+                    <div className="loading_item"></div>
+                    <div className="loading_item"></div>
+                    <div className="loading_item"></div>
+                </div>
+            </div> : <div className="chat_message__item">
                 <div className={`chat_message `}>
                     <span className={"message"}>{message}</span>
                 </div>
@@ -21,7 +27,7 @@ export default function ChatMessageItem({message, mySelf}) {
                         <div className="action_btn"><i className="bi bi-arrow-clockwise"></i></div>
                     </div>
                 </div>}
-            </div>
+            </div>}
         </div>
     )
 }

@@ -31,7 +31,6 @@ export default function SideBar(props) {
             localStorage.removeItem('refresh_token');
             navigate(Routers.Login);
         }).catch(error => {
-            console.log(error.message);
             return;
         })
     }

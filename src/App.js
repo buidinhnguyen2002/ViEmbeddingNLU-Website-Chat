@@ -16,6 +16,9 @@ import {useDispatch, useSelector} from "react-redux";
 import ChatWindow from "./components/chat_window/ChatWindow";
 import HomeWelcome from "./components/HomeWelcome/HomeWelcome";
 import MyInfo from "./components/my_info/MyInfo";
+import ForgotPassword from "./page/forgot_password/ForgotPassword";
+import VerifyForgotPassword from "./page/verify_forgot_password/VerifyForgotPassword";
+import ChangePassword from "./page/change_password/ChangePassword";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +33,18 @@ function App() {
           path: Routers.VerifyAccount,
           element: <VerifyAccount/>,
         },
+          {
+              path: Routers.VerifyForgotPass,
+              element: <VerifyForgotPassword/>,
+          },
+          {
+              path: Routers.ForgotPass,
+              element: <ForgotPassword/>,
+          },
+          {
+              path: Routers.ChangePassword,
+              element: <ChangePassword/>,
+          },
         {
           path: "/",
           element: <HomePage/>,
@@ -52,11 +67,11 @@ function App() {
                   element: <MyInfo/>,
               },
             {
-              path: "/knowledge/:knowledgeId",
+              path: "/knowledge/:knowledgeId/files",
               element: <Files/>,
             },
             {
-              path: "/knowledge/knowledgeId/fileId",
+              path: "/knowledge/:knowledgeId/files/:fileId",
               element: <FileDetail/>,
             },
           ],

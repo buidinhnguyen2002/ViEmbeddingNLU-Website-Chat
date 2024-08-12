@@ -2,7 +2,7 @@ import "./ChatSideBarItem.scss"
 import TextButtonIcon from "../icon_text_button/TextButtonIcon";
 import {useEffect, useRef, useState} from "react";
 import NotificationDialog from "../notification_dialog/NotificationDialog";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {createChatBot, deleteChatBot, getChatsBot, updateChatBot} from "../../services/ChatBotService";
 import {actionDeleteChat, actionUpdateChat, saveChatsBot} from "../../store/actions/ChatAction";
 import {decryptToken} from "../../utils/Functions";
@@ -87,8 +87,8 @@ export default function ChatSideBarItem({title,botId, chatId,index, selectedInde
         setShowOptions(!showOptions);
     }
     return (
-        <Link to={`/bots/${botId}/chat/${chatId}`} className={"link"}>
-            <div onClick={()=>handleSelected(index)} className={`chat_bar__item ${index == selectedIndex ? "chat_bar__item--selected":""}`}>
+        <Link key={chatId}  to={`/bots/${botId}/chat/${chatId}`} className={"link"}>
+            <div key={chatId} onClick={()=>handleSelected(index)} className={`chat_bar__item ${index == selectedIndex ? "chat_bar__item--selected":""}`}>
                 <span className="item_title">{titleChat}</span>
                 <div className="options_dropdown" ref={dropdownRef}>
                     <div onClick={toggleShowOptions} className="btn_option">

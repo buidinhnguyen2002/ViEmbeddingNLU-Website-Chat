@@ -6,7 +6,7 @@ export default function KnowledgeItem({title, description,knowledgeId,type, size
     return(
         <>
                 <tr className={"tr_knowledge"}>
-                    <Link to={`/knowledge/${knowledgeId}`} className={"knowledge_link"}>
+                    <Link to={`/knowledge/${knowledgeId}/files`} className={"knowledge_link"}>
                         <td className={"td_info"}>
                             <div className="knowledge_img">
                                 <img src={knowledgeImage} alt=""/>

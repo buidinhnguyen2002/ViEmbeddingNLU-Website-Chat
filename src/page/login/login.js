@@ -9,16 +9,12 @@ import imgPolygon1 from '../../assets/images/Polygon 1.png';
 import imgPolygon2 from '../../assets/images/Polygon 2.png';
 import imgPolygon3 from '../../assets/images/Polygon 3.png';
 import imgSubtract from '../../assets/images/Subtract.png';
-// import {callAPILogin, callAPIRegister, client, reConnectionServer} from '../../service/loginService';
-// import {loginSuccess} from "../../store.js/actions/userAction";
 import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import CryptoJS from 'crypto-js';
 import {login, signup} from "../../services/UserService";
 import {Routers} from "../../utils/Constants";
-import {loginSuccess} from "../../store/actions/UserAction";
 import {encryptToken} from "../../utils/Functions";
-// import {decryptData, encryptData} from "../../util/function";
 
 function Login() {
     const [status, setStatus] = useState('login');
@@ -157,6 +153,7 @@ function Login() {
                 <div className="register-container" onClick={changeStatus}>
                     <a>{status === 'login' ? 'Register' : 'Login'}</a>
                 </div>
+                <Link to={Routers.ForgotPass} className={"link"}><span className="forgot_password">Forgot password</span></Link>
             </div>
             <div className="img-decoration-container">
                 <img className="img-polygon1" src={imgPolygon1} alt=""/>

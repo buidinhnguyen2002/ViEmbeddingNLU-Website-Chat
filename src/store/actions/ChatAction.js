@@ -28,3 +28,9 @@ export function actionSaveCurrentChatInBot(chat) {
         payload: chat,
     };
 }
+// export function actionSaveKnowledgeInBot(knowledge) {
+//     return {
+//         type: 'SAVE_KNOWLEDGE_IN_CURRENT_CHAT_BOT',
+//         payload: knowledge,
+//     };
+// }

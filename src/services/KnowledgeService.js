@@ -110,3 +110,43 @@ export const addFileToKnowledge = async (files,knowledgeId, accessToken) => {
         throw error;
     }
 }
+export const getFilesKnowledge = async (accessToken, knowledgeId) => {
+    try {
+        const res = await fetch(`${ApiConstants.knowledges}/${knowledgeId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+            },
+        });
+        const data = await res.json();
+        console.log(data);
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        throw error;
+    }
+}
+export const getDetailFilesKnowledge = async (accessToken, knowledgeId, fileId) => {
+    try {
+        const res = await fetch(`${ApiConstants.knowledges}/${knowledgeId}/files/${fileId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+            },
+        });
+        const data = await res.json();
+        console.log(data);
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        throw error;
+    }
+}

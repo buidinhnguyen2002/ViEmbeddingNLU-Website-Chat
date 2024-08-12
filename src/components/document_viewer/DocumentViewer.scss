@@ -12,6 +12,24 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid $color-grey;
+        position: relative;
+        .btn_show{
+          padding: 1rem;
+          @include dimension(3rem, 3rem);
+          border-radius: 50%;
+          border: 1px solid $color-grey;
+          @include flexMiddle();
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateY(50%);
+          cursor: pointer;
+          i{
+            font-size: 1.4rem;
+          }
+        }
         &__image{
           @include dimension(6rem, 6rem);
           border-radius: 0.8rem;
@@ -87,6 +105,16 @@
       }
       .context{
         @include textStyle(1.6rem, 400, 1.5, $color-black);
+        .dropdown-content{
+          .chunk{
+            padding: 1rem;
+            background-color: $color-main-blue;
+            margin-bottom: 1rem;
+            border-radius: 0.8rem;
+            color: $color-white;
+            margin: 0 2rem 1rem;
+          }
+        }
       }
     }
   }

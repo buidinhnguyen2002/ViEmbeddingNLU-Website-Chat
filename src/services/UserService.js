@@ -155,7 +155,154 @@ export const getBots = async (accessToken) => {
         throw error;
     }
 }
+export const verifyToken = async (accessToken) => {
+    try {
+        const res = await fetch(ApiConstants.authVerifyToken, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+            },
+        });
+        const data = await res.json();
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return true;
+        }
+    }catch (error) {
+        throw error;
+    }
+}
 
+export const updateInfo = async (firstName, lastName, gender, birthDate, accessToken) => {
+    try {
+        const res = await fetch(ApiConstants.updateUser, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+
+            },
+            body: JSON.stringify({
+                "first_name": firstName,
+                "last_name": lastName,
+                "gender": gender,
+                "birth_date": birthDate,
+            },)
+        });
+        const data = await res.json();
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        // console.log(error);
+        throw error;
+    }
+}
+export const changePassword = async ( password, oldPassword,accessToken, refreshToken) => {
+    console.log("TOKEN",{
+        "password": password,
+        "old_password": oldPassword,
+        "is_logout": false,
+        "refresh_token": refreshToken,
+    });
+    try {
+        const res = await fetch(ApiConstants.updatePassword, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+
+            },
+            body: JSON.stringify({
+                "password": password,
+                "old_password": oldPassword,
+                "is_logout": false,
+                "refresh_token": refreshToken,
+            },)
+        });
+        const data = await res.json();
+        if(!res.ok){
+            if(res.status == 422){
+                throw new Error(`${data.detail[0].msg}`);
+            }else{
+                throw new Error(`${data.detail}`);
+            }
+        }else{
+            return data;
+        }
+    }catch (error) {
+        // console.log(error);
+        throw error;
+    }
+}
+export const forgotPassWord = async (email) => {
+    try {
+        const res = await fetch(`${ApiConstants.forgotPass}?email=${email}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if(!res.ok){
+            const data = await res.json();
+            throw new Error(`${data.detail}`);
+        }else{
+            return res.text();
+        }
+    }catch (error) {
+        throw error;
+    }
+}
+export const verifyForgotPassWord = async (email, token) => {
+    try {
+        const res = await fetch(`${ApiConstants.verifyForgotPass}?email=${email}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "token": token,
+            },)
+        });
+        const data = await res.json();
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        // console.log(error);
+        throw error;
+    }
+}
+export const acceptChangePassword = async (email, password,session) => {
+    try {
+        const res = await fetch(`${ApiConstants.acceptForgotPass}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "password": password,
+                "session": session,
+                "email": email,
+            },)
+        });
+        const data = await res.json();
+        if(!res.ok){
+            throw new Error(`${data.detail}`);
+        }else{
+            return data;
+        }
+    }catch (error) {
+        // console.log(error);
+        throw error;
+    }
+}
 export const refreshToken = async () => {
     // try {
     //     const res = await fetch(ApiConstants.getBots, {

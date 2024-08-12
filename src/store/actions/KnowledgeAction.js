@@ -22,3 +22,9 @@ export function actionDeleteKnowledge(knowledgeId) {
         payload: knowledgeId,
     };
 }
+export function saveCurrentFiles(files) {
+    return {
+        type: 'SAVE_CURRENT_FILES',
+        payload: files,
+    };
+}

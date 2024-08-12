@@ -1,5 +1,6 @@
 const initialState = {
     knowledges: [],
+    currentFileOfKnowledge: null,
 };
 export default function knowledgesReducer(state = initialState, action) {
     switch (action.type) {
@@ -24,6 +25,11 @@ export default function knowledgesReducer(state = initialState, action) {
             return {
                 ...state,
                 knowledges: state.knowledges.filter(knowledge => knowledge.knowledge_id !== action.payload),
+            };
+        case 'SAVE_CURRENT_FILES':
+            return {
+                ...state,
+                currentFileOfKnowledge: action.payload,
             };
         default:
             return state;
