@@ -77,10 +77,8 @@ function Login() {
                 localStorage.setItem('access_token', encryptedAccessToken);
                 localStorage.setItem('refresh_token', encryptedRefreshToken);
                 navigate(Routers.Home, { state: { email: userName}});
-
             }
         }).catch(error => {
-            console.log(error.message);
             setError(error.message);
             return;
         });
@@ -97,7 +95,8 @@ function Login() {
         }
         await signup(password, userName).then(data  =>{
             // navigate(Routers.VerifyAccount, { state: { email: userName}});
-            setRegisterSuccess(true);
+            // setRegisterSuccess(true);
+            setShowNotification(true);
             // setStatus("Login");
         }).catch(error => {
             setError(error.message);
@@ -112,8 +111,6 @@ function Login() {
         }else{
             setShowRetypePassword(!showRetypePassword);
         }
-        // const value = name === 'showPassword' ? !showPassword : !showRetypePassword;
-        // setShowPassword(value);
     }
     const handleResendToken = async () => {
         await resendVerifyToken(userName).then(data  =>{
@@ -158,17 +155,17 @@ function Login() {
                     </div>}
                 </div>
                 {error && <p className="error-message">{error}</p>}
-                {registerSuccess && (
-                    <>
-                        <div className="success-message show-overlay">
-                            <div className="tick-icon">
-                                <span>&#10004;</span>
-                            </div>
-                            <p>Đăng ký thành công!</p>
-                        </div>
-                        <div className="overlay"></div>
-                    </>
-                )}
+                {/*{registerSuccess && (*/}
+                {/*    <>*/}
+                {/*        <div className="success-message show-overlay">*/}
+                {/*            <div className="tick-icon">*/}
+                {/*                <span>&#10004;</span>*/}
+                {/*            </div>*/}
+                {/*            <p>Đăng ký thành công!</p>*/}
+                {/*        </div>*/}
+                {/*        <div className="overlay"></div>*/}
+                {/*    </>*/}
+                {/*)}*/}
                 {showNotification && <div className="overlay_notification">
                     <div className="notification__modal ">
                         <div className="notification_wrapper">

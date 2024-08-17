@@ -67,7 +67,7 @@ export default function MyInfo() {
             <div className="bot_page__header">
                 <div className="bot_page__title">
                     {/*<img src={knowledgeImage} alt=""/>*/}
-                    <p className={"title"}>My account</p>
+                    <p className={"title"}>Tài khoản</p>
                 </div>
             </div>
             <div className="bot_page__body my_info--body">
@@ -81,27 +81,27 @@ export default function MyInfo() {
                 </div>
                 <div className="body__content">
                     <div className="form_input">
-                        <span className={"title_form"}>User infomation</span>
-                        <InputModal value={firstName} onChangeInput={setFirstName} label={"First name"} placeHolder={"Enter your first name"}/>
-                        <InputModal value={lastName} onChangeInput={setLastName} label={"Last name"} placeHolder={"Enter your last name"}/>
+                        <span className={"title_form"}>Thông tin người dùng</span>
+                        <InputModal value={firstName ? firstName : ""} onChangeInput={setFirstName} label={"First name"} placeHolder={"Enter your first name"}/>
+                        <InputModal value={lastName ? lastName : ""} onChangeInput={setLastName} label={"Last name"} placeHolder={"Enter your last name"}/>
                         <div className="form_footer">
-                            <label htmlFor="date">Birt date: </label>
+                            <label htmlFor="date">Ngày sinh: </label>
                             <input id="date" onChange={(e)=> setBirthDate(e.target.value)} value={birthDate} type="date"/>
-                            <label htmlFor="gender">Gender:</label>
+                            <label htmlFor="gender">Giới tính:</label>
                             <select id="gender" value={gender} onChange={handleChange}>
                                 {/*<option value="option">Choose gender</option>*/}
                                 <option value="male">nam</option>
                                 <option value="female">nu</option>
                             </select>
                         </div>
-                        <TextButtonIcon onPress={handleUpdateUser} title={"Update"} />
+                        <TextButtonIcon onPress={handleUpdateUser} title={"Cập nhật"} />
                     </div>
                     <div className="form_input">
-                        <span className={"title_form"}>Change password</span>
-                        <InputModal type={"password"} value={oldPassword} onChangeInput={setOldPassword} label={"Current password"} placeHolder={"Enter current password"}/>
-                        <InputModal type={"password"} value={newPassword} onChangeInput={setNewPassword} label={"New password"} placeHolder={"Enter new password"}/>
+                        <span className={"title_form"}>Thay đổi mật khẩu</span>
+                        <InputModal type={"password"} value={oldPassword} onChangeInput={setOldPassword} label={"Mật khẩu hiện tại"} placeHolder={"Nhập mật khẩu hiện tại"}/>
+                        <InputModal type={"password"} value={newPassword} onChangeInput={setNewPassword} label={"Mật khẩu mới"} placeHolder={"Nhập mật khẩu mới"}/>
                         <p className="error">{error}</p>
-                        <TextButtonIcon onPress={handleChangePassword} title={"Change password"} />
+                        <TextButtonIcon onPress={handleChangePassword} title={"cập nhật"} />
                     </div>
                 </div>
             </div>

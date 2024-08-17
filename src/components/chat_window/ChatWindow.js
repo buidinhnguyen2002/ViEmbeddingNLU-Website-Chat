@@ -36,7 +36,7 @@ export default function ChatWindow() {
     const fetchChatInBot = async () => {
         try {
             const data = await getChatsInBot(accessToken, botId, chatId);
-            console.log("DATA CHAT IN BOT", data.queries);
+            // console.log("DATA CHAT IN BOT", data.queries);
             setChats(data.queries);
             setIsLoading(false);
             // setIsLoading(false);

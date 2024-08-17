@@ -2,6 +2,7 @@ import "./BotItem.scss"
 import botsIcon from "../../assets/images/brain_ai.png"
 import IconButton from "../icon_button/icon_button";
 import {Link} from "react-router-dom";
+import {getDateFromTimestamp} from "../../utils/Functions";
 export default function BotItem({botId,title, description, createAt, toggleEditBot, handleDelete}) {
     const handleDeleteClick = (event) => {
         event.preventDefault();
@@ -23,18 +24,14 @@ export default function BotItem({botId,title, description, createAt, toggleEditB
                     <div className="model_name__container">
                         <span className="model_info">ViEmbedding - 512 Tokens - 125k parameters</span>
                     </div>
-                    <p className="bot_createat">Ngày tạo: {createAt}</p>
+                    <p className="bot_createat">Ngày tạo: {getDateFromTimestamp(createAt)}</p>
                 </div>
                 <div className="bot_container__right">
                     <img src={botsIcon} alt=""/>
                 </div>
                 <div className="tools">
                     <IconButton icon={<i className="bi bi-pencil"></i>} onPress={handleEditClick}/>
-                    {/*<div onClick={handleDeleteClick} className={"icon_button"} style={{color: color}}>*/}
-                    {/*    {icon}*/}
-                    {/*</div>*/}
                     <IconButton icon={<i className="bi bi-trash"></i>} onPress={handleDeleteClick} color={"red"}/>
-                    {/*<IconButton icon={<i className="bi bi-pencil"></i>} onPress={()=> toggleEditBot(title, description)}/>*/}
                 </div>
             {/*</div>*/}
         </Link>

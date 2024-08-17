@@ -21,7 +21,6 @@ export const signup = async (password, email) => {
             return data;
         }
     }catch (error) {
-        // console.log(error);
         throw error;
     }
 }
@@ -74,7 +73,6 @@ export const resendVerifyToken = async (email) => {
             return data;
         }
     }catch (error) {
-        // console.log(error);
         throw error;
     }
 }
@@ -97,7 +95,6 @@ export const verifyAccount = async (email, token) => {
     }
 }
 export const logout = async (authToken) => {
-    console.log(authToken)
     try {
         const res = await fetch(`${ApiConstants.logout}`, {
             method: "POST",
@@ -107,7 +104,6 @@ export const logout = async (authToken) => {
             },
         });
         const data = await res.json();
-        console.log("ALO", data)
         if(!res.ok){
             throw new Error(`${data.detail}`);
         }else{
@@ -118,7 +114,6 @@ export const logout = async (authToken) => {
     }
 }
 export const getUserInfo = async (accessToken) => {
-    console.log(accessToken);
     try {
         const res = await fetch(ApiConstants.getUserInfo, {
             method: "GET",
@@ -127,7 +122,6 @@ export const getUserInfo = async (accessToken) => {
                 authorization: `Bearer ${accessToken}`,
             },
         });
-        console.log("RES",res)
         const data = await res.json();
         if(!res.ok){
             throw new Error(`${data.detail}`);
@@ -200,17 +194,10 @@ export const updateInfo = async (firstName, lastName, gender, birthDate, accessT
             return data;
         }
     }catch (error) {
-        // console.log(error);
         throw error;
     }
 }
 export const changePassword = async ( password, oldPassword,accessToken, refreshToken) => {
-    console.log("TOKEN",{
-        "password": password,
-        "old_password": oldPassword,
-        "is_logout": false,
-        "refresh_token": refreshToken,
-    });
     try {
         const res = await fetch(ApiConstants.updatePassword, {
             method: "PUT",
@@ -237,7 +224,6 @@ export const changePassword = async ( password, oldPassword,accessToken, refresh
             return data;
         }
     }catch (error) {
-        // console.log(error);
         throw error;
     }
 }
@@ -277,7 +263,6 @@ export const verifyForgotPassWord = async (email, token) => {
             return data;
         }
     }catch (error) {
-        // console.log(error);
         throw error;
     }
 }
@@ -301,7 +286,6 @@ export const acceptChangePassword = async (email, password,session) => {
             return data;
         }
     }catch (error) {
-        // console.log(error);
         throw error;
     }
 }

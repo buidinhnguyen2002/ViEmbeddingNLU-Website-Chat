@@ -22,8 +22,8 @@ export default function ChatSideBar({botId}) {
     const handleCreateNewChat = async () =>{
         try {
             const data = await createChatBot(newChat,accessToken, botId);
-            console.log(data)
             dispatch(addChat(data));
+            setNewChat("");
         } catch (error) {
             console.error('Error create bot:', error.message);
         }

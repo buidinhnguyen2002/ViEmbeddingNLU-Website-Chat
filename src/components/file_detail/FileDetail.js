@@ -4,10 +4,11 @@ import Chip from "../chip/Chip";
 import {useEffect, useState} from "react";
 import {getDetailFilesKnowledge, getKnowledges} from "../../services/KnowledgeService";
 import {saveKnowledges} from "../../store/actions/KnowledgeAction";
-import {decryptToken} from "../../utils/Functions";
+import {decryptToken, formatBytes} from "../../utils/Functions";
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 import Loading from "../loading/Loading";
+import { v4 as uuidv4 } from 'uuid';
 export default function FileDetail() {
     const { knowledgeId, fileId } = useParams();
     const accessToken = decryptToken(localStorage.getItem('access_token'));
@@ -44,7 +45,7 @@ export default function FileDetail() {
                             </div>
                             <div className="file__tag">
                                 <Chip text={`${fileDetail.file.chunk_count} đoạn`}/>
-                                <Chip text={`${fileDetail.file.size} MB`}/>
+                                <Chip text={`${formatBytes(fileDetail.file.size)}`}/>
                             </div>
                         </div>
                     </div>
@@ -52,7 +53,7 @@ export default function FileDetail() {
                 <div className="file_detail__body">
                     <div className="file__content">
                         {fileDetail.chunks.map((chunk)=>{
-                            return  <p className="chunk">{chunk.chunks}</p>
+                            return  <p key={uuidv4()} className="chunk">{chunk.chunks}</p>
                         })}
                     </div>
                 </div>

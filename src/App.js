@@ -48,7 +48,6 @@ function App() {
         {
           path: "/",
           element: <HomePage/>,
-          // element: <Login />,
           children: [
               {
                   path: "",

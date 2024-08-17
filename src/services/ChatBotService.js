@@ -2,7 +2,6 @@ import {ApiConstants} from "../utils/Constants";
 import {json} from "react-router-dom";
 
 export const getChatsBot = async (accessToken, botId) => {
-    console.log("ACCESS TOKEN", accessToken)
     try {
         const res = await fetch(`${ApiConstants.chatsBot}/${botId}/chats`, {
             method: "GET",
@@ -30,7 +29,6 @@ export const getChatsInBot = async (accessToken, botId, chatId) => {
                 authorization: `Bearer ${accessToken}`,
             },
         });
-        console.log(res);
         const data = await res.json();
         if(!res.ok){
             throw new Error(`${data.detail}`);
@@ -54,7 +52,6 @@ export const createChatBot = async (title, authToken, botId) => {
             })
         });
         const data = await res.json();
-        console.log(data);
         if(!res.ok){
             throw new Error(`${data.detail}`);
         }else{
@@ -107,7 +104,6 @@ export const deleteChatBot = async (authToken, botId, chatId) => {
 }
 // queries
 export const createQueryBot = async (botId, chatId,message, authToken) => {
-    console.log("Parameter",botId, chatId, message, authToken);
     try {
         const res = await fetch(`${ApiConstants.chatQueries}/${botId}/chats/${chatId}/query`, {
             method: "POST",
@@ -120,7 +116,6 @@ export const createQueryBot = async (botId, chatId,message, authToken) => {
             })
         });
         const data = await res.json();
-        console.log("QUERY DATA",data);
         if(!res.ok){
             throw new Error(`${data.detail}`);
         }else{
@@ -163,7 +158,6 @@ export const addKnowledgeToBot = async (botId, knowledgeId, authToken) => {
             })
         });
         const data = await res.json();
-        console.log("Knowledge DATA",data);
         if(!res.ok){
             throw new Error(`${data.detail}`);
         }else{

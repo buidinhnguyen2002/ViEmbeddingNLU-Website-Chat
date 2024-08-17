@@ -1,5 +1,5 @@
 const API_BASE_URL = 'http://localhost:8068';
-// const API_BASE_URL = 'https://b0a7-115-78-0-188.ngrok-free.app';
+// const API_BASE_URL = 'https://ed59-42-112-71-202.ngrok-free.app';
 export const ApiConstants = {
     signup: `${API_BASE_URL}/guest/signup`,
     login: `${API_BASE_URL}/guest/login`,

@@ -10,7 +10,6 @@ export const getKnowledges = async (accessToken) => {
             },
         });
         const data = await res.json();
-        console.log(data);
         if(!res.ok){
             throw new Error(`${data.detail}`);
         }else{
@@ -34,7 +33,6 @@ export const createKnowledge = async (name, description, authToken) => {
             })
         });
         const data = await res.json();
-        console.log(data);
         if(!res.ok){
             throw new Error(`${data.detail}`);
         }else{
@@ -76,7 +74,6 @@ export const deleteKnowledge = async (knowledgeId, authToken) => {
                 authorization: `Bearer ${authToken}`,
             },
         });
-        console.log(res);
         // const data = await res.json();
         if(res.status !== 204){
             throw new Error(`ERROR`);
@@ -100,7 +97,6 @@ export const addFileToKnowledge = async (files,knowledgeId, accessToken) => {
             },
             body: formData,
         });
-        console.log(res);
         if (res.status != 201) {
             throw new Error(`ERROR`);
         } else {
@@ -119,7 +115,6 @@ export const deleteFileFromKnowledge = async (fileId,knowledgeId, accessToken) =
                 authorization: `Bearer ${accessToken}`,
             },
         });
-        console.log(res);
         if(res.status == 422){
             const data = await res.json();
             throw new Error(`${data.detail[0].msg}`);
@@ -143,7 +138,6 @@ export const getFilesKnowledge = async (accessToken, knowledgeId) => {
             },
         });
         const data = await res.json();
-        console.log(data);
         if(!res.ok){
             throw new Error(`${data.detail}`);
         }else{
@@ -163,7 +157,6 @@ export const getDetailFilesKnowledge = async (accessToken, knowledgeId, fileId) 
             },
         });
         const data = await res.json();
-        console.log(data);
         if(!res.ok){
             throw new Error(`${data.detail}`);
         }else{
