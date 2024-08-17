@@ -25,7 +25,7 @@ export default function ForgotPassword({}) {
         <div className={"verify_account_page"}>
             <div className={"verify_account"}>
                 <div className="verify_account--header">
-                    <span className="title">Forgot password</span>
+                    <span className="title">Quên mật khẩu</span>
                 </div>
                 <div className="verify_account--body">
                     <input type="text" className="input_token" value={email} onChange={(e)=> {setEmail(e.target.value)}} placeholder={"Email"}/>
@@ -34,8 +34,8 @@ export default function ForgotPassword({}) {
                     {error && <span className={"message_error"}>{error}</span>}
                 </div>
                 <div className="verify_account--footer">
-                    <div onClick={handleCancel} className="footer_btn footer_btn--cancel"><span className="btn_title">Cancel</span></div>
-                    <div onClick={handleSendTokenToEmail} className="footer_btn footer_btn--verify"><span className="btn_title">Send token</span></div>
+                    <div onClick={handleCancel} className="footer_btn footer_btn--cancel"><span className="btn_title">Hủy</span></div>
+                    <div onClick={handleSendTokenToEmail} className="footer_btn footer_btn--verify"><span className="btn_title">Gửi token</span></div>
                 </div>
             </div>
         </div>

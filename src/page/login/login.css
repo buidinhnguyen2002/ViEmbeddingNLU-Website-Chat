@@ -59,6 +59,7 @@
   margin-bottom: 10px;
   transition: all 0.5s linear;
   cursor: pointer;
+  border-radius: 0.8rem;
 }
 .login-background .login-container .btn-login:hover {
   opacity: 0.8;
@@ -67,6 +68,7 @@
   color: #999999;
   font-size: 20px;
   font-weight: bold;
+  cursor: pointer;
 }
 .login-background .login-container .tick-icon {
   color: white;
@@ -105,6 +107,75 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease-in-out;
+}
+.login-background .login-container .overlay_notification {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(22, 22, 26, 0.6);
+  position: fixed;
+  z-index: 100;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f5f7fa;
+  padding: 2rem;
+  border-radius: 0.8rem;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .noti {
+  font-size: 1.4rem;
+  color: #38c538;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .message {
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .notification_footer {
+  display: flex;
+  justify-content: right;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .notification_footer .btn_ok {
+  background-color: #FFFFFF;
+  color: #1C1C1C;
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  margin-left: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .notification_footer .btn_ok:hover {
+  background-color: #5B96F7;
+  border-color: #5B96F7;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .notification_footer .btn_ok:hover span {
+  color: #FFFFFF;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .notification_footer .btn_resent {
+  background-color: #5B96F7;
+  color: #FFFFFF;
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(28, 28, 28, 0.1);
+  margin-left: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .notification_footer .btn_resent:hover {
+  background-color: #5B96F7;
+  border-color: #5B96F7;
+}
+.login-background .login-container .overlay_notification .notification__modal .notification_wrapper .notification_footer .btn_resent:hover span {
+  color: #FFFFFF;
 }
 .login-background .login-container .success-message.show-overlay + .overlay {
   opacity: 1;
@@ -161,6 +232,11 @@
   top: 0;
   right: 0;
   width: 300px;
+}
+
+.forgot_password {
+  font-size: 1.6rem;
+  color: #5B96F7;
 }
 
 /*# sourceMappingURL=login.css.map */

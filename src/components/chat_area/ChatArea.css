@@ -7,6 +7,10 @@
   border-radius: 0.8rem;
   background-color: #FFFFFF;
   position: relative;
+  transition: 0.25s linear all;
+}
+.chat_area--full {
+  width: calc(100% - 5rem);
 }
 .chat_area__title {
   padding: 1rem 1.5rem;
@@ -115,6 +119,7 @@
 }
 .chat_area .side_bar__container--show {
   width: 60%;
+  max-width: 50rem;
 }
 .chat_area .side_bar__container .side_bar_item__container {
   margin: 2rem;
@@ -210,6 +215,16 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
+}
+.chat_area .message_noti {
+  padding: 3rem;
+  text-align: center;
+}
+.chat_area .message_noti span {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #5B96F7;
 }
 
 /*# sourceMappingURL=ChatArea.css.map */

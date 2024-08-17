@@ -12,7 +12,7 @@ export default function Loading(){
                 <div className="loader_item"></div>
                 <div className="loader_item"></div>
             </div>
-            <span className={"loading_label"}>Loading...</span>
+            <span className={"loading_label"}>Đang tải...</span>
         </div>
     )
 }

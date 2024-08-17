@@ -110,6 +110,29 @@ export const addFileToKnowledge = async (files,knowledgeId, accessToken) => {
         throw error;
     }
 }
+export const deleteFileFromKnowledge = async (fileId,knowledgeId, accessToken) => {
+    try {
+        const res = await fetch(`${ApiConstants.knowledges}/${knowledgeId}/files/${fileId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                authorization: `Bearer ${accessToken}`,
+            },
+        });
+        console.log(res);
+        if(res.status == 422){
+            const data = await res.json();
+            throw new Error(`${data.detail[0].msg}`);
+        }
+        if(res.status != 204){
+            throw new Error(`ERROR`);
+        }else{
+            return "SUCCESSFUL";
+        }
+    }catch (error) {
+        throw error;
+    }
+}
 export const getFilesKnowledge = async (accessToken, knowledgeId) => {
     try {
         const res = await fetch(`${ApiConstants.knowledges}/${knowledgeId}`, {

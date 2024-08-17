@@ -15,7 +15,7 @@ export default function MyInfo() {
     const [gender, setGender] = useState(userReducer.gender);
     const [userName, setUserName] = useState("");
     const [avatar, setAvatar] = useState("");
-    const [birthDate, setBirthDate] = useState(userReducer.birtDate.split('T')[0]);
+    const [birthDate, setBirthDate] = useState(userReducer.birtDate ? userReducer.birtDate.split('T')[0] : "");
     const [firstName, setFirstName] = useState(userReducer.firstName);
     const [lastName, setLastName] = useState(userReducer.lastName);
     const [oldPassword, setOldPassword] = useState("");
@@ -70,7 +70,7 @@ export default function MyInfo() {
                     <p className={"title"}>My account</p>
                 </div>
             </div>
-            <div className="bot_page__body">
+            <div className="bot_page__body my_info--body">
                 <div className="body__header">
                     <div className="avatar">
                         <img src={avatar} alt=""/>

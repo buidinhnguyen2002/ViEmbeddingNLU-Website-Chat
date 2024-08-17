@@ -32,7 +32,7 @@ export default function FileDetail() {
             {isLoading ? <Loading/> : <div className={"file_detail"}>
                 <div className="file_detail__header">
                     <div className="file_detail__url">
-                        <span className={"root_url"}>Knowledge / document / <span className={"target_url"}>{fileDetail.file.name }</span></span>
+                        <span className={"root_url"}>Kiến thức / Danh sách tài liệu / <span className={"target_url"}>{fileDetail.file.name }</span></span>
                     </div>
                     <div className="file_detail__infomation">
                         <div className="file_image"><img src={word} alt=""/></div>
@@ -43,7 +43,7 @@ export default function FileDetail() {
                             </span>
                             </div>
                             <div className="file__tag">
-                                <Chip text={`${fileDetail.file.chunk_count} chunks`}/>
+                                <Chip text={`${fileDetail.file.chunk_count} đoạn`}/>
                                 <Chip text={`${fileDetail.file.size} MB`}/>
                             </div>
                         </div>

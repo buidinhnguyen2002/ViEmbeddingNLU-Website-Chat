@@ -11,8 +11,8 @@ export default function NotificationDialog({title, mesage,cancelDialog, confirm}
                     <p className="dialog_message">{mesage}</p>
                 </div>
                 <div className="dialog_footer">
-                    <TextButtonIcon onPress={cancelDialog} title={"Cancel"} background={"#EFEFEF"} color={"black"}/>
-                    <TextButtonIcon onPress={confirm} title={"Confirm"} background={"red"}/>
+                    <TextButtonIcon onPress={cancelDialog} title={"Hủy"} background={"#EFEFEF"} color={"black"}/>
+                    <TextButtonIcon onPress={confirm} title={"Xác nhận"} background={"red"}/>
                 </div>
             </div>
         </div>

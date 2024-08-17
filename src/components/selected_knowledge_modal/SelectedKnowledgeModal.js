@@ -69,7 +69,7 @@ export default function SelectedKnowledgeModal({toggleShowModal, knowledges, bot
         <div className="overlay">
             <div className="selected_knowledge__modal">
                 <div className="modal__header">
-                    <span className="modal__title">Select knowledge</span>
+                    <span className="modal__title">Chọn kiến thức</span>
                     <div onClick={toggleShowModal} className="modal_btn_close">
                         <i className="bi bi-x-lg"></i>
                     </div>

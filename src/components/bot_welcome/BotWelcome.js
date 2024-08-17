@@ -8,7 +8,7 @@ export default function BotWelcome() {
             </div>
             <div className={"content__wrapper"}>
                 <span className={"title_large"}>Welcome User!</span>
-                <span className={"sub_info"}>Select an existing chat or create a new one to get started</span>
+                <span className={"sub_info"}>Chọn một cuộc trò chuyện hiện có hoặc tạo một cuộc trò chuyện mới để bắt đầu</span>
             </div>
         </div>
     )

@@ -6,9 +6,11 @@
 .bot_page__header{
   height: unset;
 }
-.bot_page__body{
+.my_info--body{
   justify-content: center;
   flex-direction: column;
+}
+.bot_page__body{
   .body__header{
     padding-bottom: 2rem;
     border-bottom: 1px solid $color-grey;

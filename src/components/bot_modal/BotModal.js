@@ -18,14 +18,14 @@ export default function BotModal({botId,toggleCreateBotModel, confirm, title, de
     return (
         <div className="overlay">
             <div className="new_bot__modal ">
-                <h2 className="title_form">{botId ? "Edit bot":"Create bot"} </h2>
+                <h2 className="title_form">{botId ? "Chỉnh sửa bot":"Tạo bot"} </h2>
                 <form className={"new_bot__modal-body"}>
-                    <InputModal currentLength={titleBot.length} value={titleBot} onChangeInput={setTitleBot} label={"Bot name"} placeHolder={"Give the bot a unique name"} maxLength={40}/>
-                    <TextAreaModal value={descriptionBot} currentLength={descriptionBot.length} onChangeInput={setDescriptionBot} label={"Bot function description"} placeHolder={"It introduces the bot functions and is displayed to the bot users"} maxLength={350}/>
+                    <InputModal currentLength={titleBot.length} value={titleBot} onChangeInput={setTitleBot} label={"Tên bot"} placeHolder={"Đặt cho bot một cái tên duy nhất"} maxLength={40}/>
+                    <TextAreaModal value={descriptionBot} currentLength={descriptionBot.length} onChangeInput={setDescriptionBot} label={"Mô tả chức năng bot"} placeHolder={"Nhập mô tả cho bot"} maxLength={350}/>
                 </form>
                 <div className="new_bot__modal-footer">
-                    <TextButtonIcon title={"Cancel"} onPress={toggleCreateBotModel} background={"#FFFFFF"} color={"#1C1C1C"}/>
-                    <TextButtonIcon title={"Confirm"} onPress={()=>confirm(titleBot, descriptionBot, botId)}/>
+                    <TextButtonIcon title={"Hủy"} onPress={toggleCreateBotModel} background={"#FFFFFF"} color={"#1C1C1C"}/>
+                    <TextButtonIcon title={"Xác nhận"} onPress={()=>confirm(titleBot, descriptionBot, botId)}/>
                 </div>
             </div>
         </div>

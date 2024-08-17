@@ -23,7 +23,7 @@ export default function botsReducer(state = initialState, action) {
         case 'DELETE_BOT':
             return {
                 ...state,
-                bots: state.bots.filter(bot => bot.bot_id !== action.payload.bot_id),
+                bots: state.bots.filter(bot => bot.bot_id !== action.payload),
             };
         default:
             return state;

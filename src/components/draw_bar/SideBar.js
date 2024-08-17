@@ -42,12 +42,12 @@ export default function SideBar(props) {
         <div className={"drawbar"}>
             <div className={"drawbar__header"}>
                 {/*<TextButtonIcon icon={<i className="bi bi-plus-lg"></i>} title={"Create bot"} onPress={toggleCreateBotModel}/>*/}
-                <SideBarItem icon={<BotIcon/>} title={"My bots"} url={"/bots"} index={1} selectedIndex={index} handleSelect={setIndex}/>
-                <SideBarItem icon={<i className="bi bi-journal-text"></i>} title={"My knowledge"} url={"/knowledge"} index={2} selectedIndex={index} handleSelect={setIndex}/>
+                <SideBarItem icon={<BotIcon/>} title={"Bots"} url={"/bots"} index={1} selectedIndex={index} handleSelect={setIndex}/>
+                <SideBarItem icon={<i className="bi bi-journal-text"></i>} title={"Kiến thức"} url={"/knowledge"} index={2} selectedIndex={index} handleSelect={setIndex}/>
             </div>
             <div className={"drawbar__bottom"}>
-                <SideBarItem handleSelect={setIndex} index={3} selectedIndex={index} url={Routers.MyInfo} icon={<i className="bi bi-person"></i>} title={"My account"}/>
-                <SideBarItem handleSelect={handleLogout} index={4} selectedIndex={index} icon={<i className="bi bi-box-arrow-right"></i>} title={"Log out"}/>
+                <SideBarItem handleSelect={setIndex} index={3} selectedIndex={index} url={Routers.MyInfo} icon={<i className="bi bi-person"></i>} title={"Tài khoản"}/>
+                <SideBarItem handleSelect={handleLogout} index={4} selectedIndex={index} icon={<i className="bi bi-box-arrow-right"></i>} title={"Đăng xuất"}/>
             </div>
             {
                 createBotModal && <BotModal toggleCreateBotModel={toggleCreateBotModel} confirm={confirm}/>

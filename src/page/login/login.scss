@@ -1,3 +1,4 @@
+@import "../../styles/abstracts/variables";
 .login-background {
   min-height: 100vh;
   position: relative;
@@ -67,6 +68,7 @@
       margin-bottom: 10px;
       transition: all 0.5s linear;
       cursor: pointer;
+      border-radius: 0.8rem;
       &:hover {
         opacity: 0.8;
       }
@@ -76,6 +78,7 @@
       color: #999999;
       font-size: 20px;
       font-weight: bold;
+      cursor: pointer;
     }
 
     .tick-icon {
@@ -118,7 +121,77 @@
       visibility: hidden;
       transition: opacity 0.3s ease-in-out;
     }
-
+    .overlay_notification{
+      width: 100vw;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      background-color: rgba(22, 22, 26, 0.6);
+      position: fixed;
+      z-index: 100;
+      .notification__modal{
+        .notification_wrapper{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: $color-background-modal;
+          padding: 2rem;
+          border-radius: 0.8rem;
+          .noti{
+            font-size: 1.4rem;
+            color: $color-main-green;
+          }
+          .title{
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.5;
+          }
+          .message{
+            font-size: 1.6rem;
+            line-height: 1.5;
+          }
+          .notification_footer{
+            display: flex;
+            justify-content: right;
+            .btn_ok{
+              background-color: $color-white;
+              color: $color-black;
+              padding: 0.8rem 2rem;
+              border-radius: 1rem;
+              border: 1px solid $color-grey;
+              margin-left: 1rem;
+              margin-top: 1rem;
+              cursor: pointer;
+              &:hover{
+                background-color: $color-main-blue;
+                border-color: $color-main-blue;
+                span{
+                  color: $color-white;
+                }
+              }
+            }
+            .btn_resent{
+              background-color: $color-main-blue;
+              color: $color-white;
+              padding: 0.8rem 2rem;
+              border-radius: 1rem;
+              border: 1px solid $color-grey;
+              margin-left: 1rem;
+              margin-top: 1rem;
+              cursor: pointer;
+              &:hover{
+                background-color: $color-main-blue;
+                border-color: $color-main-blue;
+                span{
+                  color: $color-white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     .success-message.show-overlay + .overlay {
       opacity: 1;
       visibility: visible;
@@ -188,4 +261,8 @@
       width: 300px;
     }
   }
+}
+.forgot_password{
+  font-size: 1.6rem;
+  color: $color-main-blue;
 }

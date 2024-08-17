@@ -2,9 +2,9 @@ import "./ChatMessageItem.scss"
 import avatarBot from "../../assets/images/bot.png";
 import IconButton from "../icon_button/icon_button";
 import {ReactComponent as CopyIcon} from "../../assets/svg/copy.svg";
-export default function ChatMessageItem({message, mySelf, isProcess, ref}) {
+export default function ChatMessageItem({totalTime, token,message, mySelf, isProcess}) {
     return (
-        <div ref={ref} className={`chat_message__wrapper ${mySelf ? "chat_message__wrapper--self":""}`}>
+        <div className={`chat_message__wrapper ${mySelf ? "chat_message__wrapper--self":""}`}>
             {!mySelf && <div className="avatar_bot"><img src={avatarBot} alt=""/></div>}
             {message =='' && !mySelf ? <div className={`chat_message__process`}>
                 <div className="loading_message">
@@ -19,7 +19,7 @@ export default function ChatMessageItem({message, mySelf, isProcess, ref}) {
                 {!mySelf && <div className="action_message">
                     <div className="message_sub_info">
                         <span className="info_response">
-                            <i className="bi bi-check-lg"></i> 11.2s | 512 Tokens
+                            <i className="bi bi-check-lg"></i> {totalTime}s | {token} Tokens
                         </span>
                     </div>
                     <div className="action_btn__wrapper">

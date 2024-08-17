@@ -21,16 +21,19 @@ export default function BotItem({botId,title, description, createAt, toggleEditB
                         <p className="bot_description">{description}</p>
                     </div>
                     <div className="model_name__container">
-                        <span className="model_info">ViEmbedding - 256 Tokens - 125k parameters</span>
+                        <span className="model_info">ViEmbedding - 512 Tokens - 125k parameters</span>
                     </div>
-                    <p className="bot_createat">Create at: {createAt}</p>
+                    <p className="bot_createat">Ngày tạo: {createAt}</p>
                 </div>
                 <div className="bot_container__right">
                     <img src={botsIcon} alt=""/>
                 </div>
                 <div className="tools">
-                    <IconButton icon={<i className="bi bi-star"></i>} onPress={handleDeleteClick}/>
                     <IconButton icon={<i className="bi bi-pencil"></i>} onPress={handleEditClick}/>
+                    {/*<div onClick={handleDeleteClick} className={"icon_button"} style={{color: color}}>*/}
+                    {/*    {icon}*/}
+                    {/*</div>*/}
+                    <IconButton icon={<i className="bi bi-trash"></i>} onPress={handleDeleteClick} color={"red"}/>
                     {/*<IconButton icon={<i className="bi bi-pencil"></i>} onPress={()=> toggleEditBot(title, description)}/>*/}
                 </div>
             {/*</div>*/}

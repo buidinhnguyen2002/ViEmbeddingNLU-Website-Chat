@@ -78,11 +78,11 @@ export default function Knowledge() {
             {isLoading ? <Loading/> : <div className={"bot_page"}>
                 <div className="bot_page__header">
                     <div className="bot_page__title">
-                        <img src={knowledgeImage} alt=""/><p className={"title"}>Knowledge</p>
+                        <img src={knowledgeImage} alt=""/><p className={"title"}>Kiến thức</p>
                     </div>
                     <div onClick={()=>toggleEditKnowledge()} className="bot_page__btn">
                         <div className={"btn_create_bot"}>
-                            <p className={"btn_create_bot--text"}>Create knowledge</p>
+                            <p className={"btn_create_bot--text"}>Tạo kiến thức</p>
                         </div>
                     </div>
                 </div>
@@ -90,22 +90,22 @@ export default function Knowledge() {
                     <table className={"table_wrapper"}>
                         <thead className={"thead--border"}>
                         <tr>
-                            <th>Knowledge</th>
-                            <th>Type</th>
-                            <th>Size</th>
-                            <th>Time</th>
-                            <th>Enable</th>
-                            <th>Actions</th>
+                            <th>Kiến thức</th>
+                            <th>Kiểu</th>
+                            {/*<th>Kích thước</th>*/}
+                            <th>Thời gian tạo</th>
+                            {/*<th>Enable</th>*/}
+                            <th>Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
                         {knowledges.map((knowledge, index)=>{
-                            return <KnowledgeItem knowledgeId={knowledge.knowledge_id} title={knowledge.name} description={knowledge.description} type={"Text"} size={"1.9 MB"} toggleShowEdit={toggleEditKnowledge} toggleShowDialog={toggleShowDialog}/>
+                            return <KnowledgeItem createdAt={knowledge.created_at} key={knowledge.knowledge_id} knowledgeId={knowledge.knowledge_id} title={knowledge.name} description={knowledge.description} type={"Text"} size={"1.9 MB"} toggleShowEdit={toggleEditKnowledge} toggleShowDialog={toggleShowDialog}/>
                         })}
                         </tbody>
                     </table>
                 </div>
-                {showDialog && <NotificationDialog confirm={()=> handleDeleteKnowledge(knowledgeIdEdit)} title={"Comfirm to delete"} mesage={"This is dialogThis is dialogThis is dialogThis is dialogThis is dialogThis is dialog"}
+                {showDialog && <NotificationDialog confirm={()=> handleDeleteKnowledge(knowledgeIdEdit)} title={"Xác nhận để xóa"} mesage={"Bạn chắc chắn muốn xóa kiến thức này?"}
                                                    cancelDialog={toggleShowDialog}/>}
                 {showCreateKnowledge && <KnowledgeModal confirm={confirm} knowledgeId={knowledgeIdEdit} title={titleKnowledge} description={descriptionKnowledge} titleForm={"Create knowledge"} toggleShow={toggleEditKnowledge}/>}
             </div>}

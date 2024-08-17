@@ -30,7 +30,7 @@ export default function ChatPage() {
         <>
             {isLoading ? <Loading/> : <div className={"chat"}>
                 <ChatSideBar botId={botId}/>
-                <div className={"safe_area chat_safe"}>
+                <div className={"safe_area chat_safe"} style={{flex: 1}}>
                     {/*<ChatArea/>*/}
                     {/*<DocumentViewer/>*/}
                     {!chatId && <BotWelcome/> }

@@ -13,8 +13,11 @@
     display: flex;
     align-items: center;
     .title{
-      font-size: 2.5rem;
+      font-size: 3rem;
       margin: 0 0 0 1rem;
+      background: linear-gradient(90deg, #A359FF, #00CBFF); /* Chỉnh sửa màu theo ý thích */
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     img{
       @include dimension(5rem, 5rem);
@@ -23,17 +26,17 @@
   &__btn{
     .btn_create_bot{
       padding: 1.2rem 2rem;
-      background-color: $color-second-green;
+      background-color: $color-background-blue;
       border-radius: 1.2rem;
       transition: all 0.25s linear;
       cursor: pointer;
       &--text{
         margin: 0;
-        @include textStyle(1.6rem, 600, 1.2, $color-main-green);
+        @include textStyle(1.6rem, 600, 1.2, $color-main-blue);
       }
       &:hover{
         //background-color: $color-third-green;
-        background-color: $color-main-green;
+        background-color: $color-main-blue;
         .btn_create_bot--text{
           color: $color-white;
         }

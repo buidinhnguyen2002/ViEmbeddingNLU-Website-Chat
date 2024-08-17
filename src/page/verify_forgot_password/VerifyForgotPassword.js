@@ -30,18 +30,18 @@ export default function VerifyForgotPassword({}) {
         <div className={"verify_account_page"}>
             <div className={"verify_account"}>
                 <div className="verify_account--header">
-                    <span className="title">Verify forgot password</span>
+                    <span className="title">Xác minh quên mật khẩu</span>
                 </div>
                 <div className="verify_account--body">
-                    <input type="text" className="input_token" value={token} onChange={(e)=> {setToken(e.target.value)}} placeholder={"Enter token"}/>
+                    <input type="text" className="input_token" value={token} onChange={(e)=> {setToken(e.target.value)}} placeholder={"Nhập token"}/>
                 </div>
                 <div className="notification">
                     {error && <span className={"message_error"}>{error}</span>}
                     {resendSuccess && <span className="message_resend">{resendSuccess}</span>}
                 </div>
                 <div className="verify_account--footer">
-                    <div onClick={handleCancel} className="footer_btn footer_btn--cancel"><span className="btn_title">Cancel</span></div>
-                    <div onClick={handleSendTokenToEmail} className="footer_btn footer_btn--verify"><span className="btn_title">Verify</span></div>
+                    <div onClick={handleCancel} className="footer_btn footer_btn--cancel"><span className="btn_title">Hủy</span></div>
+                    <div onClick={handleSendTokenToEmail} className="footer_btn footer_btn--verify"><span className="btn_title">Xác thực</span></div>
                 </div>
             </div>
         </div>

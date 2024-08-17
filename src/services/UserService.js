@@ -15,6 +15,7 @@ export const signup = async (password, email) => {
         });
         const data = await res.json();
         if(!res.ok){
+            if(res.status == 422) throw new Error(`${data.detail[0].msg}`);
             throw new Error(`${data.detail}`);
         }else{
             return data;
@@ -126,6 +127,7 @@ export const getUserInfo = async (accessToken) => {
                 authorization: `Bearer ${accessToken}`,
             },
         });
+        console.log("RES",res)
         const data = await res.json();
         if(!res.ok){
             throw new Error(`${data.detail}`);

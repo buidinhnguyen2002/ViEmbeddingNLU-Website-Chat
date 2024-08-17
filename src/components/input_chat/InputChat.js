@@ -27,9 +27,9 @@ export default function InputChat({sendMessage}) {
     return (
         // <div className={"input__wrapper"}>
             <div className={"input__container"}>
-                <div className="btn-attach">
-                    <i className="bi bi-paperclip"></i>
-                </div>
+                {/*<div className="btn-attach">*/}
+                {/*    <i className="bi bi-paperclip"></i>*/}
+                {/*</div>*/}
                 <div className={"input"}><textarea ref={textareaRef} onKeyDown={handleKeyDown}
                                                    value={message} onChange={handleChange} rows={1}/></div>
                 <div onClick={handleSendMessage} className={"btn_send"}>

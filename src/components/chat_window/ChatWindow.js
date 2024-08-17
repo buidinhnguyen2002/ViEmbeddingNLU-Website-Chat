@@ -18,8 +18,10 @@ export default function ChatWindow() {
     const accessToken = decryptToken(localStorage.getItem('access_token'));
     // const myknowledges = useSelector((state) => state.knowledgeReducer.knowledges);
     const [chats, setChats] = useState([]);
+    const [isLoadChat, setIsLoadchat] = useState(false)
+    const [showContext, setShowContext] = useState(true);
     useEffect(() => {
-        fetchData();
+        // fetchData();
         fetchChatInBot();
     }, [chatId,accessToken]);
     const fetchData = async () => {
@@ -34,8 +36,9 @@ export default function ChatWindow() {
     const fetchChatInBot = async () => {
         try {
             const data = await getChatsInBot(accessToken, botId, chatId);
-            // console.log("DATA CHAT IN BOT", data.queries);
+            console.log("DATA CHAT IN BOT", data.queries);
             setChats(data.queries);
+            setIsLoading(false);
             // setIsLoading(false);
         } catch (error) {
             console.error('Error fetching chat:', error.message);
@@ -44,8 +47,8 @@ export default function ChatWindow() {
     return (
         <>
             {isLoading? <Loading/> : <>
-                <ChatArea chats={chats}/>
-                <DocumentViewer chats={chats}/>
+                <ChatArea chats={chats} fetChats={fetchChatInBot} showContext={showContext}/>
+                <DocumentViewer chats={chats} showContext={showContext} setShowContext={setShowContext}/>
             </>}
 
         </>

@@ -49,25 +49,25 @@ export default function ChangePassword({}) {
                             <div className="success_img">
                                 <img src={successful} alt=""/>
                             </div>
-                            <p className={"noti_message"}>Password changed successfully</p>
+                            <p className={"noti_message"}>Mật khẩu thay đổi thành công</p>
                             <div onClick={handleReturnLogin} className="btn_return_login">
                                 <span>Login</span>
                             </div>
                         </> : <>
                             <div className="verify_account--header">
-                                <span className="title">Change password</span>
+                                <span className="title">Thay đổi mật khẩu</span>
                             </div>
                             <div className="verify_account--body mb_10">
-                                <input type="password" className="input_token" value={password} onChange={(e)=> {setPassword(e.target.value)}} placeholder={"Enter new password"}/>
+                                <input type="password" className="input_token" value={password} onChange={(e)=> {setPassword(e.target.value)}} placeholder={"Nhập mật khẩu mới"}/>
                             </div>
                             <div className="verify_account--body">
-                                <input type="password" className="input_token" value={rePassword} onChange={(e)=> {setRePassword(e.target.value)}} placeholder={"Re-enter password"}/>
+                                <input type="password" className="input_token" value={rePassword} onChange={(e)=> {setRePassword(e.target.value)}} placeholder={"Nhập lại mật khẩu"}/>
                             </div>
                             <div className="notification">
                                 {error && <span className={"message_error"}>{error}</span>}
                             </div>
                             <div className="verify_account--footer">
-                                <div onClick={handleCancel} className="footer_btn footer_btn--cancel"><span className="btn_title">Cancel</span></div>
+                                <div onClick={handleCancel} className="footer_btn footer_btn--cancel"><span className="btn_title">Hủy</span></div>
                                 <div onClick={handleChangePassWord} className="footer_btn footer_btn--verify"><span className="btn_title">Ok</span></div>
                             </div>
                         </>}

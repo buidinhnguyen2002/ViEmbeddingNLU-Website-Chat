@@ -9,6 +9,10 @@
   border-radius: 0.8rem;
   background-color: $color-white;
   position: relative;
+  transition: 0.25s linear all;
+  &--full {
+    width: calc(100% - 10rem/2);
+  }
   &__title{
     padding: 1rem 1.5rem;
     border-bottom: 1px solid $color-grey;
@@ -109,6 +113,7 @@
     overflow-x: hidden;
     &--show{
       width: 60%;
+      max-width: 50rem;
     }
     .side_bar_item__container{
       margin: 2rem;
@@ -197,5 +202,12 @@
       }
     }
 
+  }
+  .message_noti{
+    padding: 3rem;
+    text-align: center;
+    span{
+      @include textStyle(2rem, 600, 1.5, $color-main-blue);
+    }
   }
 }

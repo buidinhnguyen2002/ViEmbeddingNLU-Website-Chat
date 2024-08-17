@@ -17,7 +17,7 @@ export default function HomePage(props) {
     useEffect(() => {
         handleVerifyToken();
         fetchData();
-    }, [accessToken]);
+    }, [accessToken, navigate]);
     const fetchData = async () => {
         try {
             const userInfo = await getUserInfo(accessToken);

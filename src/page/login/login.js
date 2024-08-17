@@ -1,7 +1,4 @@
 import React, {useState, useEffect} from "react";
-// import '@fortawesome/fontawesome-free/css/all.min.css';
-// import 'bootstrap-css-only/css/bootstrap.min.css';
-// import 'mdbreact/dist/css/mdb.css';
 import './login.scss';
 import imgEllipse1 from '../../assets/images/Ellipse 1.png';
 import imgEllipse2 from '../../assets/images/Ellipse 2.png';
@@ -12,9 +9,15 @@ import imgSubtract from '../../assets/images/Subtract.png';
 import {useDispatch} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import CryptoJS from 'crypto-js';
-import {login, signup} from "../../services/UserService";
+import {login, resendVerifyToken, signup} from "../../services/UserService";
 import {Routers} from "../../utils/Constants";
 import {encryptToken} from "../../utils/Functions";
+import NotificationDialog from "../../components/notification_dialog/NotificationDialog";
+import Loading from "../../components/loading/Loading";
+import knowledgeImage from "../../assets/images/dataset_text.png";
+import InputModal from "../../components/input_modal/InputModal";
+import TextAreaModal from "../../components/textarea_modal/TextAreaModal";
+import TextButtonIcon from "../../components/icon_text_button/TextButtonIcon";
 
 function Login() {
     const [status, setStatus] = useState('login');
@@ -25,7 +28,8 @@ function Login() {
     const [showRetypePassword, setShowRetypePassword] = useState(false);
     const [error, setError] = useState('');
     const [registerSuccess, setRegisterSuccess] = useState(false);
-
+    const [showNotification, setShowNotification] = useState(false);
+    const [resendSuccess, setResendSuccess] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -65,7 +69,8 @@ function Login() {
         }
         await login(userName, password).then(data  =>{
             if(data.status == 403){
-                navigate(Routers.VerifyAccount, { state: { email: userName}});
+                // navigate(Routers.VerifyAccount, { state: { email: userName}});
+                setShowNotification(!showNotification);
             }else{
                 const encryptedAccessToken = encryptToken(data.access_token);
                 const encryptedRefreshToken = encryptToken(data.refresh_token);
@@ -91,7 +96,9 @@ function Login() {
             return;
         }
         await signup(password, userName).then(data  =>{
-            navigate(Routers.VerifyAccount, { state: { email: userName}});
+            // navigate(Routers.VerifyAccount, { state: { email: userName}});
+            setRegisterSuccess(true);
+            // setStatus("Login");
         }).catch(error => {
             setError(error.message);
             return;
@@ -100,8 +107,26 @@ function Login() {
 
     const toggleShowPassword = (event) => {
         const name = event.target.parentElement.getAttribute('name');
-        const value = name === 'showPassword' ? !showPassword : !showRetypePassword;
-        setShowPassword(value);
+        if(name === "showPassword"){
+            setShowPassword(!showPassword);
+        }else{
+            setShowRetypePassword(!showRetypePassword);
+        }
+        // const value = name === 'showPassword' ? !showPassword : !showRetypePassword;
+        // setShowPassword(value);
+    }
+    const handleResendToken = async () => {
+        await resendVerifyToken(userName).then(data  =>{
+            setError("");
+            setResendSuccess(true);
+            setTimeout(() => {
+                setResendSuccess(false);
+            }, 2000);
+        }).catch(error => {
+            setError(error.message);
+            setResendSuccess(false);
+            return;
+        });
     }
     useEffect(() => {
         setError("");
@@ -113,11 +138,11 @@ function Login() {
                     <h4 className="title-form">{status === 'login' ? 'Login' : 'Register'}</h4>
                 </div>
                 <div className="input-container">
-                    <input className="d-block" type="text" name="userName" placeholder="Username" value={userName}
+                    <input className="d-block" type="text" name="userName" placeholder="Email" value={userName}
                            onChange={handleOnchangeInput}/>
                     <div className="password-wrapper">
                         <input className="d-block" name="password" type={showPassword ? 'text' : 'password'}
-                               placeholder="Password" value={password}
+                               placeholder="Mật khẩu" value={password}
                                onChange={handleOnchangeInput}/>
                         <span style={{cursor: 'pointer'}} name="showPassword" onClick={toggleShowPassword}>
                             <i className={showPassword ? 'bi bi-eye' : 'bi bi-eye-slash'}></i>
@@ -125,7 +150,7 @@ function Login() {
                     </div>
                     {status === 'register' && <div className="password-wrapper">
                         <input className="d-block" type={showRetypePassword ? 'text' : 'password'} name="retypePassword"
-                               placeholder="Retype password" value={retypePassword}
+                               placeholder="Nhập lại mật khẩu" value={retypePassword}
                                onChange={handleOnchangeInput}/>
                         <span style={{cursor: 'pointer'}} name="showRetypePassword" onClick={toggleShowPassword}>
                             <i className={showRetypePassword ? 'bi bi-eye' : 'bi bi-eye-slash'}></i>
@@ -144,16 +169,27 @@ function Login() {
                         <div className="overlay"></div>
                     </>
                 )}
-
-
+                {showNotification && <div className="overlay_notification">
+                    <div className="notification__modal ">
+                        <div className="notification_wrapper">
+                            <div className="title">Xác thực tài khoản</div>
+                            <span className="message">Vui lòng kiểm tra email để xác thực tài khoản.</span>
+                            {resendSuccess && <div className="noti">Gửi lại thành công! Vui lòng kiểm tra email.</div>}
+                            <div className="notification_footer">
+                                <div onClick={()=>setShowNotification(!showNotification)} className="btn_ok"><span className="btn_title">Ok</span></div>
+                                <div onClick={handleResendToken} className="btn_resent"><span className="btn_title">Gửi lại</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>}
                 <button className="btn-login col-12" onClick={status === 'login' ? handleLogin : handleRegister}>
                     {status === 'login' ? 'Login' : 'Register'}
                 </button>
                 <hr style={{borderColor: "#FFFFFF", borderWidth: "1px"}}/>
                 <div className="register-container" onClick={changeStatus}>
-                    <a>{status === 'login' ? 'Register' : 'Login'}</a>
+                    <a>{status === 'login' ? 'Đăng ký' : 'Đăng nhập'}</a>
                 </div>
-                <Link to={Routers.ForgotPass} className={"link"}><span className="forgot_password">Forgot password</span></Link>
+                <Link to={Routers.ForgotPass} className={"link"}><span className="forgot_password">Quên mật khẩu</span></Link>
             </div>
             <div className="img-decoration-container">
                 <img className="img-polygon1" src={imgPolygon1} alt=""/>

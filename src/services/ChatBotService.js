@@ -30,6 +30,7 @@ export const getChatsInBot = async (accessToken, botId, chatId) => {
                 authorization: `Bearer ${accessToken}`,
             },
         });
+        console.log(res);
         const data = await res.json();
         if(!res.ok){
             throw new Error(`${data.detail}`);
@@ -181,11 +182,10 @@ export const deleteKnowledgeToBot = async (botId, knowledgeId, authToken) => {
                 authorization: `Bearer ${authToken}`,
             },
         });
-        const data = await res.json();
-        if(!res.ok){
-            throw new Error(`${data.detail}`);
+        if(res.status != 204){
+            throw new Error(`ERROR`);
         }else{
-            return data;
+            return "SUCCESSFUL";
         }
     }catch (error) {
         throw error;
